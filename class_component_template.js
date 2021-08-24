@@ -42,27 +42,26 @@ class ComponentName extends Component {
   static getDerivedStateFromError(error) {}
 
   componentDidCatch(error, info) {}
-  
+
   someFetchAPI = (params) => {
     fetch('url', {
       method: 'method',
       headers: {},
-      body: JSON.stringify({})
-    }).then(
-      (response) => {
-        if(response.status === 200){
+      body: JSON.stringify({}),
+    })
+      .then((response) => {
+        if (response.status === 200) {
           return response.json()
         } else {
-          // throw error
+          throw new Error('Error fetching')
         }
-      }
-    ).then(
-      (response_json) => {
+      })
+      .then((response_json) => {
         // do something with this
-      }
-    ).catch((error) => {
-      // do something with error
-    })
+      })
+      .catch((error) => {
+        // do something with error
+      })
   }
 }
 
